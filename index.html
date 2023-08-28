@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的履歷 - 首頁</title>
+    <link rel="stylesheet" href="reset.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* ----------------------- 菜單 ----------------------- */
+        #menu_control {
+            position: absolute;
+            /* 最上方的空白消除 */
+            z-index: -2;
+            /* 把打勾處叫出來 -2 讓它隱藏 */
+            opacity: 0;
+            /* 確保打勾處消失 */
+        }
+
+        .header {
+            height: 50px;
+            background-color: #ccc;
+            position: relative;
+        }
+
+        .logo {
+            width: 60px;
+            height: 40px;
+            margin-left: 10px;
+        }
+
+        .logo img {
+            display: block;
+        }
+
+        .menu_btn {
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+
+        .menu_btn span {
+            opacity: 0;
+            /* 讓裡面文字消失 方法一 */
+            width: 1px;
+            /* 讓裡面文字消失 方法二 */
+            height: 1px;
+            display: block;
+            overflow: hidden;
+        }
+
+        /* -------------- 偽元素 菜單裡一條一條的 -------------- */
+        .menu_btn::before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            left: 2px;
+            width: 36px;
+            background-color: #aaa;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0px 8px 0px #aaa,
+                /* 製作另外的兩條線 */
+                0px -8px 0px #aaa;
+        }
+
+        /* ----------------------- 導引列 ----------------------- */
+        nav {
+            width: 80%;
+            height: calc(100vh - 50px);
+            /* 視窗高 vh：viewpo height ； 計算機 calc*/
+            background-color: #282923;
+            position: absolute;
+            top: 50px;
+            left: -100%;
+            /* 先-100%放在外面 */
+            transition: .5s;
+            /* link 出來速度 */
+        }
+        nav a {
+            display: block;
+            /* 變條列狀態 */
+            text-decoration: none;
+            /* 不要裝飾 */
+            color: #a6e22c;
+            padding: 10px 20px;
+            border-bottom: 1px solid #282923;
+            /* link下方的線 */
+        }
+        #menu_control:checked~.header nav {
+            /* 選取器 */
+            left: 0;
+        }
+
+        /* -------------------- 電腦、平板呈現方式 -------------------- */
+        @media screen and (min-width: 768px) {
+            .menu_btn {
+                display: none;
+                /* 讓菜單消失 */
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #282923;
+                align-items: center;
+                /* 垂直置中 */
+            }
+
+            nav {
+                /* 把手機狀態的絕對定位改成相對定位 */
+                position: relative;
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent;
+                /* 背景透明 */
+            }
+            nav a {
+                border-bottom: none;
+                /* 超連結不要底線 */
+            }
+        }
+
+        /* ------------------- 封面圖片 ------------------- */
+        .banner img {
+            width: 100%;
+            /* height: 500px; */
+        }
+
+        /* ------------------- 關於我 ------------------- */
+        .title {
+            background-color: bisque;
+            /* margin: 0 0 ; */
+            padding: 10px;
+        }
+
+        /* ------------------- 關於我 標題 ------------------- */
+        .title h2 {
+            text-align: center;
+            font-size: 64px;
+            padding: 20px 20px 20px;
+        }
+
+        /* ------------------- 關於我 內文 ------------------- */
+        .title p {
+            font-size: 22px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .title span {
+            /* 粗體字 */
+            font-weight: bold;
+        }
+
+        .title p:hover {
+            color: orangered;
+            transition: .3s;
+        }
+
+        /* ------------------- 著作權 ------------------- */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            bottom: 0;
+            /* 08.25 下午更新*/
+        }
+
+        @media screen and (min-width: 768px) {
+            .banner img {
+                width: 100%;
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+
+
+<body>
+
+    <!-- 選單 -->
+    <input type="checkbox" name="" id="menu_control">
+
+    <div class="header">
+        <h1 class="logo">
+            <a href="#">
+                <img src="https://picsum.photos/60/40?random=1">
+            </a>
+        </h1>
+        <label for="menu_control" class="menu_btn">
+            <span>
+                選單
+            </span>
+        </label>
+        <nav>
+            <a href="index.html">關於我</a>
+            <a href="work.html">學經歷</a>
+            <a href="Portfolio.html">證照</a>
+            <a href="trip.html">佐世保</a>
+            <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+        </nav>
+    </div>
+
+    <!-- 封面圖片 -->
+    <div class="banner">
+        <img src="pic/DSC07207.jpg" alt="">
+    </div>
+    <!-- 關於我 -->
+    <div class="about">
+        <div class="wrap">
+            <div class="title">
+                <h2>關於我</h2>
+                <p><span>我熱愛旅行，勇於走出舒適圈</span>，這份愛讓我對於在國外獨自生活充滿信心。今年三月成功考取<span>「華語導遊人員」、「日語領隊人員資格」。</span>這些證書不僅是我的專業認證，更是總結我在語言、旅遊方面的里程碑。
+                </p><br>
+
+                <p>不斷追求進步，今年參加勞動部的<span>「嵌入式機器學習開發實作班」</span>，深入學習Python程式語言，訓練AI，希望讓自己的視野擴展到更遙遠的未來。</p><br>
+
+                <p>此外，我也透過自學，積極學習<span> HTML 和 CSS </span>，了解網頁設計和網路的世界，未來我希望能夠結合自身經驗幫助更多人、強化自己的就業能力。</p><br>
+
+                <p>這一路走來，我深切體會到學習和成長的價值，我深信這些努力將為我開啟更多精彩的旅程。我期待能夠將我的多元專業帶到不同的地方，與人互動、交流，志同道合的夥伴們一起工作，建立公司團隊的成就。<br>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 著作權 -->
+    <div class="footer">
+        &copy; copyright 2023 by weilun
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的履歷 - 佐世保</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* ----------------------- 菜單 ----------------------- */
+        #menu_control {
+            position: absolute;
+            /* 最上方的空白消除 */
+            z-index: -2;
+            /* 把打勾處叫出來 -2 讓它隱藏 */
+            opacity: 0;
+            /* 確保打勾處消失 */
+        }
+
+        .header {
+            height: 50px;
+            background-color: #ccc;
+            position: relative;
+        }
+
+        .logo {
+            width: 60px;
+            height: 40px;
+            margin-left: 10px;
+        }
+
+        .logo img {
+            display: block;
+        }
+
+        .menu_btn {
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+
+        .menu_btn span {
+            opacity: 0;
+            /* 讓裡面文字消失 方法一 */
+            width: 1px;
+            /* 讓裡面文字消失 方法二 */
+            height: 1px;
+            display: block;
+            overflow: hidden;
+        }
+
+        .menu_btn::before {
+            /* 偽元素 菜單裡一條一條的 */
+            content: '';
+            position: absolute;
+            height: 2px;
+            left: 2px;
+            width: 36px;
+            background-color: #aaa;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0px 8px 0px #aaa,
+                /* 製作另外的兩條線 */
+                0px -8px 0px #aaa;
+        }
+
+        nav {
+            /**/
+            width: 80%;
+            height: calc(100vh - 50px);
+            /* 視窗高 vh：viewpo height ； 計算機 calc*/
+            background-color: #282923;
+            position: absolute;
+            top: 50px;
+            left: -100%;
+            /* 先-100%放在外面 */
+            transition: .5s;
+            /* link 出來速度 */
+        }
+
+        nav a {
+            display: block;
+            /* 變條列狀態 */
+            text-decoration: none;
+            /* 不要裝飾 */
+            color: #a6e22c;
+            padding: 10px 20px;
+            border-bottom: 1px solid #282923;
+            /* link下方的線 */
+        }
+
+        #menu_control:checked~.header nav {
+            /* 選取器 */
+            left: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+
+            /* 電腦、平板呈現方式*/
+            .menu_btn {
+                display: none;
+                /*讓菜單消失*/
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #282923;
+                align-items: center;
+                /* 垂直置中 */
+            }
+
+            nav {
+                position: relative;
+                /* 把手機狀態的絕對定位改成相對定位 */
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent;
+                /* 背景透明 */
+            }
+
+            nav a {
+                border-bottom: none;
+                /* 超連結不要底線 */
+            }
+        }
+
+        /* --------------------------------------------------------------------- */
+
+
+        .first {
+            background-color: rgb(230, 203, 172);
+        }
+
+        .pro {
+            background-color: antiquewhite;
+        }
+
+        /* 專案大圖 */
+        .banner img {
+            width: 100%;
+            /* height: 800px; */
+        }
+
+        /* 專案標題 */
+        .title h1 {
+            font-size: 60px;
+            text-align: center;
+        }
+
+        /* 目錄 */
+        .catalog h1 {
+            font-size: 60px;
+            text-align: center;
+        }
+
+        .catalog h2 {
+            font-size: 40px;
+            text-align: center;
+        }
+
+        /* 內文設定 */
+        /* 讓「關於我們的背景」滿版，不用wrap */
+        .inside-text {
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .inside-text h2 {
+            font-size: 36px;
+            line-height: 1.5;
+        }
+
+        .inside-text h3 {
+            font-size: 30px;
+            line-height: 1.5;
+        }
+
+        .inside-text p {
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        .inside-text table {
+            background-color: rgb(221, 216, 216);
+            margin: 20px;
+        }
+
+        .inside-text img {
+            width: 100%;
+
+
+            max-width: 600px;
+            max-height: 600px;
+        }
+
+        .inside-text a {
+            text-decoration: none;
+            /* 不要裝飾 */
+        }
+
+        /* 表格內部框線 */
+        .inside-text table td,
+        td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* 分隔線 */
+        hr {
+            margin: 10px;
+            border: 2px solid;
+        }
+
+        /* ------------------- 著作權 ------------------- */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            bottom: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            .banner img {
+                width: 100%;
+                height: 800px;
+            }
+
+            .inside-text img {
+                display: inline-block;
+                padding: 10px;
+                width: 50%;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 選單 -->
+    <input type="checkbox" name="" id="menu_control">
+
+    <div class="header">
+        <h1 class="logo" id="logo">
+            <!-- <a href="#">
+        <img src="https://picsum.photos/60/40?random=1">
+    </a>  -->
+        </h1>
+        <label for="menu_control" class="menu_btn">
+            <span>
+                選單
+            </span>
+        </label>
+        <nav>
+            <a href="index.html">關於我</a>
+            <a href="work.html">學經歷</a>
+            <a href="Portfolio.html">證照</a>
+            <a href="trip.html">佐世保</a>
+            <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+        </nav>
+    </div>
+
+
+
+
+    <!-- 封面 -->
+    <div class="banner">
+        <img src="pic/battleship.jpg" alt="banner">
+    </div>
+    <!-- 目錄 -->
+    <div class="first">
+        <div class="wrap1">
+            <div class="catalog">
+                <h1>旅遊業領隊計畫書 - 佐世保軍港（日本在地旅遊）</h1>
+                <h2>目錄</h2>
+                <h2>
+                    一、帶團規劃<br>
+                    二、旅行費用<br>
+                    三、交通服務<br>
+                    四、住宿服務<br>
+                    五、餐飲服務<br>
+                    六、景點資訊<br>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 內文 -->
+    <div class="pro">
+        <div class="wrap">
+            <div class="inside-text">
+
+                <h2>一、帶團計畫</h2>
+                <h3>基本資訊：</h3>
+                <p>1. 團名：2019佐世保軍港二日遊（長崎）<br>
+                    2. 出發時間：2019年06月22日 08：45<br>
+                    3. 回程時間：2019年06月23日 17：00<br>
+                    4. 前往國家：日本（Japan）<br>
+                    5. 費用項目：<br>（1）團費包含項目：夜間巴士、住宿費、餐食費用、景點門票費用、新臺幣 200 萬元責任險新臺幣 3 萬元意外醫療險<br>
+                    （2）團費不含項目：護照費用、洗衣費、電話費及其他個人費用<br>
+                    （3）自費活動項目：全程無自費活動<br>
+                    （4）購物進站項目：全程無進購物站活動</p>
+
+                <h3>聯絡資訊：</h3>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>姓名</td>
+                        <td>聯絡電話</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>領隊姓名</td>
+                        <td>翁偉倫</td>
+                        <td>（+886）0966 123 456</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>國內旅行社</td>
+                        <td>日本大好旅行社（偽）</td>
+                        <td>（+886）9876 5432</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>送機公司代表</td>
+                        <td>桃園摩托機動隊（偽）</td>
+                        <td>（+886）1234 5678</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>國外代理商</td>
+                        <td>JP西日本（偽）</td>
+                        <td>（+080）03 1234 5678</td>
+                        <td>1 Senshukukokita, Izumisano, Osaka 549-0001日本</td>
+                    </tr>
+                    <tr>
+                        <td>國內緊急連絡人</td>
+                        <td>陳旅遊（偽）</td>
+                        <td>（+886）0988 123 456</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>國外緊急連絡人</td>
+                        <td>田中太郎（偽）</td>
+                        <td>（+080）03 4321 7654</td>
+                        <td></td>
+                    </tr>
+                </table>
+
+
+                <h3>旅遊地圖：</h3>
+                <div class="pic">
+                    <a href="pic/map-d1.png"><img src="pic/map-d1.png" alt=""></a>
+                    <a href="pic/map-d2.png"><img src="pic/map-d2.png" alt=""></a>
+                </div>
+
+                <h3>帶團準備與重要事項:</h3>
+                <p>1. 摺疊傘：以防有零星降雨。<br>
+                    2. 薄外套：日夜溫差大，有時氣溫會降低至攝氏二十度以下。<br>
+                    3. 防曬油：搭乘遊湖船。<br>
+                    4. 遮刺青防水貼布：因風俗習慣，如要利用大眾池，請先貼住刺青部位在入浴。</p>
+
+                <hr>
+
+                <h2>二、旅行費用</h2>
+                <table>
+                    <tr>
+                        <td>項目</td>
+                        <td>費用（日圓）</td>
+                    </tr>
+                    <tr>
+                        <td>夜間巴士</td>
+                        <td>6,500</td>
+                    </tr>
+                    <tr>
+                        <td>住宿</td>
+                        <td>4,324</td>
+                    </tr>
+                    <tr>
+                        <td>西肥バス1日乗車券</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <td>SASEBO軍港クルーズ</td>
+                        <td>2,000</td>
+                    </tr>
+                    <tr>
+                        <td>九十九島遊覽船</td>
+                        <td>1,400</td>
+                    </tr>
+                    <tr>
+                        <td>（伙食）第一天早餐 商店</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>（伙食）第一天午餐 飛魚拉麵</td>
+                        <td>730</td>
+                    </tr>
+                    <tr>
+                        <td>（伙食）第一天晚餐 Sasebo C&B Burgers 下京町店</td>
+                        <td>700</td>
+                    </tr>
+                    <tr>
+                        <td>（伙食）第一天早餐 飯店內用</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>（伙食）第二天午餐 BigMan 四ヶ町アーケード</td>
+                        <td>918</td>
+                    </tr>
+                    <tr>
+                        <td>（伙食）第一天晚餐 松屋</td>
+                        <td>800</td>
+                    </tr>
+                    <tr>
+                        <td>總計</td>
+                        <td>18,672</td>
+                    </tr>
+                </table>
+
+                <hr>
+
+                <h2>三、交通服務</h2>
+                <h3>行程中搭乘交通工具及注意事項：</h3>
+
+                <p>1. 透過夜間巴士抵達當地，再以大眾運輸系統（公車）前往旅遊景點，請以官方網站的交通資料為主。<br>
+                    2. 搭乘夜間巴士時，請注意隨身物品；乘車期間會經過三到四次休息站，請把我時間上廁所。<br>
+                    3. 大眾運輸系統可以搭配當地的旅遊套票同時購買，節省旅費。<br>
+                    4. 日本與我國約有 1~2 小時的時差，請旅客務必注意到這一點。<br>
+                    5. 使用票券：<br>
+                    交通IC卡：Suica、ICOCA<br>
+                    <a href="https://www.bus.saihigroup.co.jp/oneday-ticket/17447.html">西肥バス1日乗車券（土曜・日曜・祝日限定）</a>
+                    大人 1,000円<br>
+
+                    <a href="https://www.kintetsu.co.jp/senden/Railway/Ticket/sanpai/">SASEBO~海軍さんの港まち~　軍港クレーズ</a>
+                    大人 2,000円<br>
+
+                    6. 佐世保車站前乘車處：
+                    <a href="https://www.bus.saihigroup.co.jp/main-bus-stop/2168.html">乘車處</a>
+                </p>
+
+                <hr>
+
+                <h2>四、住宿服務</h2>
+
+                <a href="https://www.chuogroup.jp/raizan/ja/" style="font-size: 22px;">OYO佐世保皇宮飯店（Tabist 佐世保パレスホテル）</a>
+
+                <p>住宿日期：06/22<br>
+                    《飯店簡介》
+                    地址：〒857-0027 長崎県佐世保市谷郷町4-14 <br>
+                    連絡電話：+81 956 22 1310 <br>
+                    旅館等級：3 星級<br>
+                    設施與特色服務：免費Wi-Fi、禁菸房間、停車場</p>
+                <div class="pic">
+                    <a href="pic/hotle.jpg"><img src="pic/hotle.jpg"></a>
+                </div>
+
+                <hr>
+
+                <h2>五、餐飲服務（在地特色美食）</h2>
+                <h3><a href="https://www.pearlsea.jp/tenant/tenant_39/">第一天中餐：飛魚拉麵（あごら〜めん本舗）</a></h3>
+                <p>您可以一邊欣賞九十九島的美景，一邊品嚐各種美味的拉麵。我們也提供露天座位，讓您可以攜帶寵物一同光臨！<br>
+                    飛魚拉麵與一般日本拉麵截然不同。湯底以飛魚精心熬製而成，清淡香醇的湯底令人驚艷。麵體有嚼勁但偏軟，類似台式拉麵。結合了獨特的湯底和口感，帶給您全新的味覺體驗。無論您是拉麵愛好者還是喜歡清淡風味的人，飛魚拉麵都值得一試。<br>
+                </p>
+                <div class="pic">
+                    <a href="pic/d1-lun.jpeg"><img src="pic/d1-lun.jpeg"></a>
+                </div>
+
+                <h3><a href="https://sasebo-burger.com/">第一天晚餐：Sasebo C&B Burgers 下京町店</a></h3>
+                <p>佐世保市的知名漢堡店。它以擁有厚實、豪華的漢堡排名聞名。鄰近車站鬧區、交通便利，提供舒適的用餐環境和友善的服務。他們的漢堡由頂級牛肉製成，搭配新鮮的生菜、蔬菜和美味的醬料。漢堡麵包鬆軟，肉質鮮嫩多汁，每一口都充滿豐富的風味。<br>
+                </p>
+                <div class="pic">
+                    <a href="pic/d1-din02.jpeg"><img src="pic/d1-din02.jpeg"></a>
+                    <a href="pic/d1-din.jpg"><img src="pic/d1-din.jpg"></a>
+
+                </div>
+
+                <h3><a href="https://www.sasebo-bigman.jp/">第二天中餐：BigMan 四ヶ町アーケード</a></h3>
+                <p>在地知名連鎖漢堡店，相傳漢堡的製作方式是由當地美軍傳授，在漢堡店林立的左世保中，受到當地人與觀光客的喜愛。<br>
+                    上京町本店的客人眾多，可以到在商店街中的四ヶ町アーケード店用餐。<br></p>
+                <div class="pic">
+                    <a href="pic/d2-lun02.jpeg"><img src="pic/d2-lun02.jpeg"></a>
+                    <a href="pic/d2-lun.jpg"><img src="pic/d2-lun.jpg"></a>
+                </div>
+
+                <hr>
+
+                <h2>六、景點資訊</h2>
+                <h3>九十九島遊覽船</h3>
+                <p>從佐世保港北方有一處由複雜交錯的海岸和208個島嶼交織成的美麗自然景觀「九十九島」。九十九島表示數量眾多而不是實際數量，島嶼密度是日本第一。
+                    西元1955年指定為西海國立公園，並針對這一區加強保育。
+                    目前有4座島上有人居住、其餘皆為無人島，常綠闊葉樹的森林倒影在水面上、安靜的波浪各處成為各種動物的住處。隨著陽光的變化，表情也在不斷的變化，每個季節的花和鳥兒會給景觀增添色彩，不管來多少次都不會讓您厭倦卻會給您帶來感動。
+                </p>
+                <div class="pic">
+                    <a href="pic/d1-99.jpeg"><img src="pic/d1-99.jpeg"></a>
+                </div>
+
+                <h3>石岳展望台</h3>
+                <p>展望台位于海拔191m的石岳山頂，是遠眺九十九島美景的絶佳場所。從這裡可以360度展望，近在眼前的大小島嶼吸引了很多業餘和專業的攝影師前來拍攝。好萊塢電影「最後的武士」片頭中的島嶼風景就取自這裡。
+                </p>
+                <div class="pic">
+                    <a href="pic/d1-rock.jpg"><img src="pic/d1-rock.jpg"></a>
+                </div>
+
+                <h3>九十九展望台 展海峰</h3>
+                <p>這裡可以看到九十九島180度的美景，是佐世保市最具人氣的展望台。展望台下的園地裏，春天（3月下旬～4月上旬）有油菜花，秋天（10月上旬～10月中旬）有大波斯菊盛開，吸引衆多遊客前來觀賞。</p>
+                <a href="pic/d1-see.jpg"><img src="pic/d1-see.jpg"></a>
+
+
+                <h3>天主教三浦町教會</h3>
+                <p>1899年佐世保的信徒們曾在谷鄉町建造了一座教堂，稱爲佐世保教堂。而三浦町教堂建於1931年12月，為哥特式風格建築，設計、施工者不明。太平洋戰爭期間，基督教被當作異教受到軍部的鎮壓，為了避免成爲空襲的目標，信徒們將教堂塗成黑色，逃過了戰火，是非常珍貴的一座教堂。
+                </p>
+                <div class="pic">
+                    <a href="pic/d1-ch.jpeg"><img src="pic/d1-ch.jpeg"></a>
+                </div>
+
+                <h3>佐世保五番街</h3>
+                <p>從JR佐世保站港口方向出口徒步1分鐘即可到達。商場面朝大海，匯集了83家店舗。
+                    其中有漢堡店HIKARI、賣福砂屋長崎蜂蜜蛋糕的特產店、九州銘菓等。不僅可以體驗購物的樂趣，還可以坐在面朝大海的餐廳或咖啡舘慢慢品味美食。</p>
+
+
+                <h3>弓張岳展望台</h3>
+                <p>在這個展望台上可以將九十九島的自然景觀和佐世保的市區景觀盡收眼底。西邊可以遠眺五島海域和九十九島，南邊是深入陸地的佐世保灣，東側是佐世保美麗的市區街道，三個角度的美景一覽無遺。到了夜晚，市區的夜景和海上的漁火交織成一幅夢幻的風景。而到了春天，周邊山上的櫻花盛開，更是一大勝景
+                </p>
+                <div class="pic">
+                    <a href="pic/d1-mo.jpeg"><img src="pic/d1-mo.jpeg"></a>
+                </div>
+
+
+                <h3>海上自衛隊 倉島岸壁</h3>
+                <p>佐世保地方軍團僅在周末和節假日舉辦向公眾開放駐紮在佐世保的船隻的活動。免費入場，無需提前預訂，但您需要出示由公共機構簽發的帶照片的身份證件，例如駕照、個人編號卡、護照或學生證。為了確保基地的安全，參觀人數限制在能用日語引起注意的範圍內，日本公民和日本居民都可以參觀。
+                </p>
+                <div class="pic">
+                    <a href="pic/d2-ship01.jpeg"><img src="pic/d2-ship01.jpeg"></a>
+                </div>
+
+                <h3>SASEBO軍港クルーズ</h3>
+                <p>軍港、造船業、離島渡輪等都是「海風之國」佐世保的代表性元素<br>
+                    佐世保的定義曾經是「軍港」，而發展至今成為「港口城市」，港口匯集了海上自衛隊、海上保安廳和美國海軍。在佐世保還是小漁村時，港口就是這裡的名片，而現在依然如此。這裡有各種船隻往來穿梭，連接了SSK造船廠（前身是海軍工廠）、五島、西海、平戶等地，也述說著這裡的歷史。<br>
+                    乘坐游船遊覽港口，聽嚮導細細道來。
+                </p>
+                <div class="pic">
+                    <a href="pic/d2-ship02.jpg"><img src="pic/d2-ship02.jpg"></a>
+                    <a href="pic/d2-ship03.jpeg"><img src="pic/d2-ship03.jpeg"></a>
+                </div>
+
+                <h3>舊佐世保鎮守府凱旋紀念館（市民文化館）</h3>
+                <p>凱旋紀念館建於1923年5月，是為紀念一戦的凱旋而建的。二戦後美軍將其用作舞廳和電影院，1977年返還給佐世保市，現在是市民使用的多功能文化設施，用於戲劇、音楽等表演。1997年被認定為国家有形文化財產。
+                </p>
+                <div class="pic">
+                    <a href="pic/d2-kan01.jpg"><img src="pic/d2-kan01.jpg"></a>
+                </div>
+
+                <h3>海上自衛隊佐世保史料館「SAIL TOWER」</h3>
+                <p>原來的佐世保水交社（曾經的海軍士官集會場所，建於1898年）進行了部分修繕，並增設7層樓高的新館后，成爲了現在的艦艇史料館，保存了很多舊海軍的遺產。館內簡明易懂地介紹了舊海軍以及海上自衛隊的歷史和現狀等，還展示了各種艦艇模型和史料。
+                </p>
+                <div class="pic">
+                    <a href="pic/d2-kan02.jpg"><img src="pic/d2-kan02.jpg"></a>
+                </div>
+
+                <h3>東公園</h3>
+                <p>供奉著從佐世保海軍基地建立到太平洋戰爭結束60年間犧牲的17萬多名海軍軍官的靈魂。目前，共有62處集體紀念紀念碑和437處單獨紀念碑，全年為各艦艇和部隊舉行追悼會。盂蘭盆節期間，東山海軍公墓保護協會舉辦盂蘭盆節紀念活動，秋季舉行盂蘭盆節紀念活動。佐世保市舉辦佐世保市戰死者追悼會。明治後期起作為佐世保海軍基地下的海軍墓地進行管理，1959年起由佐世保市管理，以“東公園”的形式維持。公園內種植了許多像徵海軍的櫻花（染井吉野櫻），也是著名的賞櫻勝地，一年四季都有眾多參拜者前來參拜。
+                </p>
+                <div class="pic">
+                    <a href="pic/d2-koen.jpg"><img src="pic/d2-koen.jpg"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="footer">
+        &copy;copyright 2023 by weilun
+    </div>
+
+</body>
+
+</html>

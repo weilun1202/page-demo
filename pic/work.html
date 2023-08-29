@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的履歷 - 學經歷</title>
+    <link rel="stylesheet" href="reset.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* ----------------------- 菜單 ----------------------- */
+        #menu_control {
+            position: absolute;
+            /* 最上方的空白消除 */
+            z-index: -2;
+            /* 把打勾處叫出來 -2 讓它隱藏 */
+            opacity: 0;
+            /* 確保打勾處消失 */
+        }
+        .header {
+            height: 50px;
+            background-color: #ccc;
+            position: relative;
+        }
+        .logo {
+            width: 60px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        .logo img {
+            display: block;
+        }
+        .menu_btn {
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        .menu_btn span {
+            opacity: 0;
+            /* 讓裡面文字消失 方法一 */
+            width: 1px;
+            /* 讓裡面文字消失 方法二 */
+            height: 1px;
+            display: block;
+            overflow: hidden;
+        }
+
+        /* -------------- 偽元素 菜單裡一條一條的 -------------- */
+        .menu_btn::before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            left: 2px;
+            width: 36px;
+            background-color: #aaa;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0px 8px 0px #aaa,
+                /* 製作另外的兩條線 */
+                0px -8px 0px #aaa;
+        }
+
+        /* ----------------------- 導引列 ----------------------- */
+        nav {
+            width: 80%;
+            height: calc(100vh - 50px);
+            /* 視窗高 vh：viewpo height ； 計算機 calc*/
+            background-color: #282923;
+            position: absolute;
+            top: 50px;
+            left: -100%;
+            /* 先-100%放在外面 */
+            transition: .5s;
+            /* link 出來速度 */
+        }
+        nav a {
+            display: block;
+            /* 變條列狀態 */
+            text-decoration: none;
+            /* 不要裝飾 */
+            color: #a6e22c;
+            padding: 10px 20px;
+            border-bottom: 1px solid #282923;
+            /* link下方的線 */
+        }
+        #menu_control:checked~.header nav {
+            /* 選取器 */
+            left: 0;
+        }
+
+        /* -------------------- 電腦、平板呈現方式 -------------------- */
+        @media screen and (min-width: 768px) {
+            .menu_btn {
+                display: none;
+                /* 讓菜單消失 */
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #282923;
+                align-items: center;
+                /* 垂直置中 */
+            }
+            nav {
+                /* 把手機狀態的絕對定位改成相對定位 */
+                position: relative;
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent;
+                /* 背景透明 */
+            }
+            nav a {
+                border-bottom: none;
+                /* 超連結不要底線 */
+            }
+        }
+
+
+
+
+
+
+
+        /* 呈現極限 */
+        .item-group {
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        /* 觸碰動畫 */
+        .item-group p:hover {
+            transition: .5s;
+            color: orangered;
+        }
+
+        /* 標題 */
+        .title {
+            margin: 0 0px 20px;
+            padding: 10px 10px;
+            text-align: center;
+            background-color: rgb(238, 241, 204);
+        }
+
+        .title h2 {
+            text-align: center;
+            font-size: 70px;
+        }
+
+        /* 文字 */
+        .item {
+            margin: 0 10px 20px;
+        }
+
+        .item .text h3 {
+            font-size: 38px;
+            text-align: center;
+        }
+
+        .item .text p {
+            font-size: 24px;
+            text-align: left;
+            margin: 10px;
+            padding: 10px 10px 10px;
+        }
+
+        /* 單位LOGO */
+        .item .pic img {
+            width: 200px;
+            padding: 10px 10px 10px;
+        }
+
+        /* 著作權 */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            bottom: 0;
+        }
+
+        /* 平板、電腦狀態下 */
+        @media screen and (min-width: 768px) {
+            .item-group {
+                display: flex;
+            }
+
+            .school .item {
+                display: flex;
+                width: 50%;
+                margin: 0;
+            }
+
+            .work .item {
+                width: 50%;
+            }
+
+            .title {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(238, 241, 204);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 選單 -->
+    <input type="checkbox" name="" id="menu_control">
+
+    <div class="header">
+        <h1 class="logo">
+            <a href="#">
+                <img src="https://picsum.photos/60/40?random=1">
+            </a>
+        </h1>
+        <label for="menu_control" class="menu_btn">
+            <span>
+                選單
+            </span>
+        </label>
+        <nav>
+            <a href="index.html">關於我</a>
+            <a href="work.html">學經歷</a>
+            <a href="Portfolio.html">證照</a>
+            <a href="trip.html">佐世保</a>
+            <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+
+<!-- 學校 -->
+    <div class="school">
+        <div class="wrap">
+            <div class="title">
+                <h2>學歷</h2>
+            </div>
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <img src="pic/school tz.jpg" alt="慈濟">
+                    </div>
+                    <div class="text">
+                        <h3>慈濟大學 東方語文學系<br>日文組</h3>
+                        <p>2012 / 9 ~ 2016 / 6<br>
+                            1.諮商中心志工團副團長<br>
+                            2.快樂健康社社員<br>
+                            3.行政院科技部大專生研究計畫<br>
+                            4.尚絅大學華語遊學營隊隊</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="pic/school 淡水.jpg" alt="淡水商工">
+                    </div>
+                    <div class="text">
+                        <h3>新北市立淡水高級商工<br>資訊科</h3>
+                        <p>2009 / 9 ~ 2012 / 6<br>
+                            1.動漫社副社長<br>
+                            2.丙級 電腦軟體應用<br>
+                            3.丙級 網頁設計
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- 工作 -->
+    <div class="work">
+        <div class="wrap">
+            <div class="title">
+                <h2>工作</h2>
+            </div>
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <img src="pic/logo Fubon.png" alt="富邦">
+                    </div>
+                    <div class="text">
+                        <h3>富邦人壽保險<br>股份有限公司</h3>
+                        <p>2020 / 02 ~ 2021 / 04<br>
+                            1.保險公司文件審核、受理、建檔、掃描、核對、打包、郵寄<br>
+                            2.提供客戶專業且量身打造的保險規劃，全方位照顧到人生各個階段的需求<br>
+                            3.針對個人可能面臨的風險，並且設計、解說及銷售各種不同類型的保險<br>
+                            4.協助客戶申請理賠、申辦信用卡</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="pic">
+                        <img src="pic/logo GALA.png" alt="GALA">
+                    </div>
+                    <div class="text">
+                        <h3>GALA<br>湯沢スキー場</h3>
+                        <p>2018 / 12 ~ 2019 / 04<br>
+                            1.以中、英、日文進行園區引導<br>
+                            2.操作吊椅，維護遊客安全<br>
+                            3.遺失物收領<br>
+                            4.高空機械維護</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="pic">
+                        <img src="pic/logo 民宿.jpg" alt="民宿">
+                    </div>
+                    <div class="text">
+                        <h3>日本京都<br>上京町民宿</h3>
+                        <p>2019 / 04 ~ 2019 / 07<br>
+                            1.館內環境清潔維護與設備維護<br>
+                            2.盤點備品相關物品<br>
+                            3.接待客人並提供相關服務<br>
+                            4.客房設備、飯店設施說明與介紹<br>
+                            5.提供旅遊諮詢<br>
+                            6.櫃檯行政工作與主管交辦事項</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="pic">
+                        <img src="pic/logo imc.jpg" alt="精英">
+                    </div>
+                    <div class="text">
+                        <h3>玉山銀行<br>精英人力派遣</h3>
+                        <p>2018 / 01 ~ 2018 / 10<br>
+                            1.分類、審核文件資料，並輸入建檔<br>
+                            2.整理文件資料，並歸檔保存<br>
+                            3.支援日常行政庶務工作<br>
+                            4.債權憑證掃瞄建檔</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 著作權 -->
+    <div class="footer">
+        &copy;copyright 2023 by weilun
+    </div>
+
+</body>
+
+</html>

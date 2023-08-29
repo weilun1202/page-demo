@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的履歷 - 證照</title>
+    <link rel="stylesheet" href="reset.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /* ----------------------- 菜單 ----------------------- */
+        #menu_control {
+            position: absolute; /* 最上方的空白消除 */
+            z-index: -2; /* 把打勾處叫出來 -2 讓它隱藏 */
+            opacity: 0; /* 確保打勾處消失 */
+        }
+        .header {
+            height: 50px;
+            background-color: #ccc;
+            position: relative;
+        }
+        .logo {
+            width: 60px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        .logo img {
+            display: block;
+        }
+        .menu_btn {
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        .menu_btn span {
+            opacity: 0; /* 讓裡面文字消失 方法一 */
+            width: 1px; /* 讓裡面文字消失 方法二 */
+            height: 1px;
+            display: block;
+            overflow: hidden;
+        }
+        .menu_btn::before { /* 偽元素 菜單裡一條一條的 */
+            content: '';
+            position: absolute;
+            height: 2px;
+            left: 2px;
+            width: 36px;
+            background-color: #aaa;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0px 8px 0px #aaa, /* 製作另外的兩條線 */
+                0px -8px 0px #aaa;
+        }
+        nav {
+            /**/
+            width: 80%;
+            height: calc(100vh - 50px); /* 視窗高 vh：viewpo height ； 計算機 calc*/
+            background-color: #282923;
+            position: absolute;
+            top: 50px;
+            left: -100%; /* 先-100%放在外面 */
+            transition: .5s; /* link 出來速度 */
+        }
+        nav a {
+            display: block; /* 變條列狀態 */
+            text-decoration: none; /* 不要裝飾 */
+            color: #a6e22c;
+            padding: 10px 20px;
+            border-bottom: 1px solid #282923; /* link下方的線 */
+        }
+        #menu_control:checked~.header nav { /* 選取器 */
+            left: 0;
+        }
+        @media screen and (min-width: 768px) { /* 電腦、平板呈現方式*/
+            .menu_btn {
+                display: none; /*讓菜單消失*/
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #282923;
+                align-items: center;
+                /* 垂直置中 */
+            }
+            nav {
+                position: relative; /* 把手機狀態的絕對定位改成相對定位 */
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent;
+                /* 背景透明 */
+            }
+            nav a {
+                border-bottom: none; /* 超連結不要底線 */
+            }
+        }
+
+
+
+
+
+
+        /* 呈現極限 */
+        .item-group {
+            width: 100%;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        .pic img:focus,
+        .pic img:hover {
+            transition: .5s;
+            transform: scale(1.5);
+            z-index: 1;
+        }
+
+        img {
+            width: 350px;
+            display: inline-block;
+            margin: auto;
+        }
+        /* 文字 */
+        .title {
+            margin: 0 0px 20px;
+            padding: 10px;
+            text-align: center;
+            background-color: rgb(238, 241, 204);
+        }
+        .title h2 {
+            font-size: 64px;
+        }
+        /* 著作權 */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            bottom: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            .item-group {
+                display: flex;
+            }
+        }
+        @media screen and (min-width: 768px) {            /* 電腦、平板呈現方式*/
+            .menu_btn {
+                display: none;                /*讓菜單消失*/
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #282923;
+                align-items: center;                /* 垂直置中 */
+            }
+            nav {
+                position: relative;  /* 把手機狀態的絕對定位改成相對定位 */
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent; /* 背景透明 */
+            }
+            nav a {
+                border-bottom: none; /* 超連結不要底線 */
+            }
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+<body>
+
+<!-- 選單 -->
+    <input type="checkbox" name="" id="menu_control">
+
+    <div class="header">
+        <h1 class="logo" id="logo">
+            <!-- <a href="#">
+            <img src="https://picsum.photos/60/40?random=1">
+        </a>  -->
+        </h1>
+        <label for="menu_control" class="menu_btn">
+            <span>
+                選單
+            </span>
+        </label>
+        <nav>
+            <a href="index.html">關於我</a>
+            <a href="work.html">學經歷</a>
+            <a href="Portfolio.html">證照</a>
+            <a href="trip.html">佐世保</a>
+            <a href="mailto:a0977427590@gmail.com">聯絡我</a>
+        </nav>
+    </div>
+
+<!-- 證照 -->
+    <div class="language">
+        <div class="wrap">
+            <div class="title">
+                <h2>語言</h2>
+            </div>
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <a href="pic/01 華語導遊-s.jpg"><img src="pic/01 華語導遊-s.jpg"></a>
+                        <a href="pic/02 外語領隊 (日文)-s.jpg"><img src="pic/02 外語領隊 (日文)-s.jpg"></a>
+                        <a href="pic/03 N2證書 正.jpg"><img src="pic/03 N2證書 正.jpg"></a>
+                        <a href="pic/04 BJT J3.jpg"><img src="pic/04 BJT J3.jpg"></a>
+                        <a href="pic/05 華語教學學程.jpg"><img src="pic/05 華語教學學程.jpg"></a>
+                        <a href="pic/06 世大運.jpg"><img src="pic/06 世大運.jpg"></a>
+                        <a href="pic/07 東方國際學院 語言學校.jpg"><img src="pic/07 東方國際學院 語言學校.jpg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="care">
+        <div class="wrap">
+            <div class="title">
+                <h2>醫療</h2>
+            </div>
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <a href="pic/08 照顧服務員結業證書-s.jpg"><img src="pic/08 照顧服務員結業證書-s.jpg"></a>
+                        <a href="pic/09 BLS基本救命術訓練課程.jpg"><img src="pic/09 BLS基本救命術訓練課程.jpg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Technology">
+        <div class="wrap">
+            <div class="title">
+                <h2>科技</h2>
+            </div>
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <a href="pic/12 華梵大學 新尖兵課程Ⅱ 1120420 嵌入式機器學習 證書.jpg"><img
+                                src="pic/12 華梵大學 新尖兵課程Ⅱ 1120420 嵌入式機器學習 證書.jpg"></a>
+                        <a href="pic/10 丙級 電腦軟體應用-s.jpg"><img src="pic/10 丙級 電腦軟體應用-s.jpg"></a>
+                        <a href="pic/11 丙級 網頁設計-s.jpg"><img src="pic/11 丙級 網頁設計-s.jpg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 著作權 -->
+    <div class="footer">
+        &copy;copyright 2023 by weilun
+    </div>
+
+</body>
+
+</html>

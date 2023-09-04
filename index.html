@@ -88,6 +88,7 @@
             transition: .5s;
             /* link 出來速度 */
         }
+
         nav a {
             display: block;
             /* 變條列狀態 */
@@ -98,6 +99,7 @@
             border-bottom: 1px solid #282923;
             /* link下方的線 */
         }
+
         #menu_control:checked~.header nav {
             /* 選取器 */
             left: 0;
@@ -129,6 +131,7 @@
                 background-color: transparent;
                 /* 背景透明 */
             }
+
             nav a {
                 border-bottom: none;
                 /* 超連結不要底線 */
@@ -142,7 +145,7 @@
         }
 
         /* ------------------- 關於我 ------------------- */
-        .title {
+        .about {
             background-color: bisque;
             /* margin: 0 0 ; */
             padding: 10px;
@@ -172,6 +175,39 @@
             transition: .3s;
         }
 
+        /* ------------------- 旅行經驗 ------------------- */
+        .item-group {
+            /* 讓「關於我們的背景」滿版，不用wrap */
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .item-group img {
+            width: 100%;
+        }
+        .item-group li {
+            font-size: 25px;
+            text-align: left;
+            line-height: 1.5;
+            padding: 10px 30px;
+        }
+        .item-group p:hover {
+            color: orangered;
+            transition: .3s;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         /* ------------------- 著作權 ------------------- */
         .footer {
             background-color: #333;
@@ -187,17 +223,19 @@
                 width: 100%;
                 height: 600px;
             }
+
+            .item-group {
+                display: flex;
+            }
+
+            .item-group .pic,
+            .item-group .text {
+                width: 50%;
+                margin: 0;
+            }
         }
     </style>
 </head>
-
-
-
-
-
-
-
-
 
 
 <body>
@@ -239,11 +277,65 @@
 
                 <p>不斷追求進步，今年參加勞動部的<span>「嵌入式機器學習開發實作班」</span>，深入學習Python程式語言，訓練AI，希望讓自己的視野擴展到更遙遠的未來。</p><br>
 
-                <p>此外，我也透過自學，積極學習<span> HTML 和 CSS </span>，了解網頁設計和網路的世界，未來我希望能夠結合自身經驗幫助更多人、強化自己的就業能力。</p><br>
+                <p>此外，我也透過自學，積極學習<span> HTML 和 CSS </span>，此網頁為響應式網頁，能針對不同螢幕的大小而自動調整網頁圖文內容。未來我希望能夠結合自身經驗幫助更多人、強化自己的就業能力。
+                </p><br>
 
                 <p>這一路走來，我深切體會到學習和成長的價值，我深信這些努力將為我開啟更多精彩的旅程。我期待能夠將我的多元專業帶到不同的地方，與人互動、交流，志同道合的夥伴們一起工作，建立公司團隊的成就。<br>
                 </p>
             </div>
+        </div>
+    </div>
+    <div class="about">
+        <div class="wrap">
+            <div class="title">
+                <h2>旅行經驗</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- 旅行經驗 -->
+    <div class="about">
+        <div class="wrap">
+            <div class="item-group">
+                <!-- <h2>旅行經驗</h2> -->
+                <div class="pic">
+                    <img src="pic/S__94208011.jpg" alt="">
+                </div>
+                <div class="text">
+
+                    <ul>
+                        <li>
+                            <p>動漫巡禮 - 玉子市場 (京都 ● 春)</p>
+                        </li>
+                        <li>
+                            <p>動漫巡禮 - 聲之形 (岐阜 ● 春)</p>
+                        </li>
+                        <li>
+                            <p>軍港巡禮 - 舞鶴 & 天橋立 (京都 ● 春)</p>
+                        </li>
+                        <li>
+                            <p>軍港巡禮 - 佐世保 (長崎 ● 夏)</p>
+                        </li>
+                        <li>
+                            <p>鞍馬寺、貴船 (京都 ● 春、夏、秋)</p>
+                        </li>
+                        <li>
+                            <p>比叡山 (京都 ● 秋)</p>
+                        </li>
+                        <li>
+                            <p>保津川賞楓 (京都 ●  秋)</p>
+                        </li>
+                        <li>
+                            <p>大原三千院 (京都 ● 秋)</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+
         </div>
     </div>
     <!-- 著作權 -->

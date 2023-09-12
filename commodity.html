@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的履歷 - 證照</title>
+    <title>2019年旅遊行程</title>
     <link rel="stylesheet" href="reset.css">
-    <style type="text/css">
+    <style>
         * {
             margin: 0;
             padding: 0;
             list-style: none;
         }
-        
+
         /* ----------------------- 菜單 ----------------------- */
         #menu_control {
             position: absolute;
@@ -34,8 +34,6 @@
         }
         .logo img {
             display: block;
-            width: 60px;
-            height: 40px;
         }
         .menu_btn {
             width: 40px;
@@ -55,9 +53,8 @@
             display: block;
             overflow: hidden;
         }
-
-        /* -------------- 偽元素 菜單裡一條一條的 -------------- */
         .menu_btn::before {
+            /* 偽元素 菜單裡一條一條的 */
             content: '';
             position: absolute;
             height: 2px;
@@ -71,9 +68,8 @@
                 /* 製作另外的兩條線 */
                 0px -8px 0px #aaa;
         }
-
-        /* ----------------------- 導引列 ----------------------- */
         nav {
+            /**/
             width: 80%;
             height: calc(100vh - 50px);
             /* 視窗高 vh：viewpo height ； 計算機 calc*/
@@ -100,15 +96,12 @@
             left: 0;
         }
 
+        @media screen and (min-width: 768px) {
 
-
-
-
-
-        /* -------------------- 電腦、平板呈現方式 -------------------- */
-        @media screen and (min-width: 768px) { /* 電腦、平板呈現方式*/
+            /* 電腦、平板呈現方式*/
             .menu_btn {
-                display: none; /*讓菜單消失*/
+                display: none;
+                /*讓菜單消失*/
             }
             .header {
                 display: flex;
@@ -118,7 +111,8 @@
                 /* 垂直置中 */
             }
             nav {
-                position: relative; /* 把手機狀態的絕對定位改成相對定位 */
+                position: relative;
+                /* 把手機狀態的絕對定位改成相對定位 */
                 left: 0;
                 display: flex;
                 width: auto;
@@ -128,50 +122,63 @@
                 /* 背景透明 */
             }
             nav a {
-                border-bottom: none; /* 超連結不要底線 */
+                border-bottom: none;
+                /* 超連結不要底線 */
             }
         }
+
         @media screen and (min-width: 768px) {
             .item-group {
                 display: flex;
             }
-        }
-        
-
-
-
-
-
-        /* 呈現極限 */
-        .item-group {
-            width: 100%;
-            max-width: 1600px;
-            margin: auto;
+            .item {
+                position: relative;
+            }
+            .item .tab {
+                position: absolute;
+            }
         }
 
-        .pic img:focus,
-        .pic img:hover {
-            transition: .5s;
-            transform: scale(1.5);
-            z-index: 1;
-        }
-
-        img {
-            width: 350px;
-            display: inline-block;
-            margin: auto;
-        }
-        /* 文字 */
         .title {
-            margin: 0 0px 20px;
-            padding: 10px;
+            font-size: 72px;
             text-align: center;
+            padding: 10px;
+        }
+        .wrap {
+            width: 960px;
+            margin: auto;
+            display: flex;
             background-color: rgb(238, 241, 204);
         }
-        .title h2 {
-            font-size: 64px;
+        .item {
+            width: 300px;
+            margin: 10px;
+            border: 1px solid #aaa;
+            padding: 10px;
         }
-        /* 著作權 */
+        .item img {
+            width: 100%;
+        }
+        .item .tab {
+            font-size: 30px;
+            background-color: red;
+            color: white;
+            padding: 6px 10px;
+            top: 0;
+            left: 0;
+        }
+        h2 {
+            font-size: 45px;
+            padding: 10px;
+        }
+        p {
+            font-size: 20px;
+        }
+
+
+
+
+        /* ------------------- 著作權 ------------------- */
         .footer {
             background-color: #333;
             color: white;
@@ -182,10 +189,9 @@
     </style>
 </head>
 
-
 <body>
 
-<!-- 選單 -->
+    <!-- 選單 -->
     <input type="checkbox" name="" id="menu_control">
 
     <div class="header">
@@ -193,7 +199,7 @@
             <a href="#">
                 <img src="https://picsum.photos/id/29/60/40"><!--圖片固定-->
             </a>
-            
+
         </h1>
         <label for="menu_control" class="menu_btn">
             <span>
@@ -210,65 +216,112 @@
         </nav>
     </div>
 
-<!-- 證照 -->
-    <div class="language">
-        <div class="wrap">
-            <div class="title">
-                <h2>語言</h2>
-            </div>
-            <div class="item-group">
-                <div class="item">
-                    <div class="pic">
-                        <a href="pic/01 華語導遊-s.jpg"><img src="pic/01 華語導遊-s.jpg"></a>
-                        <a href="pic/02 外語領隊 (日文)-s.jpg"><img src="pic/02 外語領隊 (日文)-s.jpg"></a>
-                        <a href="pic/03 N2證書 正.jpg"><img src="pic/03 N2證書 正.jpg"></a>
-                        <a href="pic/04 BJT J3.jpg"><img src="pic/04 BJT J3.jpg"></a>
-                        <a href="pic/05 華語教學學程.jpg"><img src="pic/05 華語教學學程.jpg"></a>
-                        <a href="pic/06 世大運.jpg"><img src="pic/06 世大運.jpg"></a>
-                        <a href="pic/07 東方國際學院 語言學校.jpg"><img src="pic/07 東方國際學院 語言學校.jpg"></a>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+
+
+
+    <div class="title">
+        <h1>2019年旅遊行程</h1>
+    </div>
+
+    <div class="wrap">
+
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/battleship.jpg"><img src="pic/battleship.jpg" alt=""></a>
+
+            <h2>佐世保</h2>
+            <p>
+                日期：6月<br>
+                活動：軍港巡禮，最後的武士<br>
+            </p>
+        </div>
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com奈良.jpg"><img src="pic/com奈良.jpg" alt=""></a>
+            <h2>奈良</h2>
+            <p>
+                日期：11月<br>
+                活動：鹿死誰手，仙貝爭奪<br>
+            </p>
+        </div>
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com伊勢.jpg"><img src="pic/com伊勢.jpg" alt=""></a>
+            <h2>伊勢</h2>
+            <p>
+                日期：11月<br>
+                活動：尋找八百萬神<br>
+            </p>
         </div>
     </div>
 
-    <div class="care">
-        <div class="wrap">
-            <div class="title">
-                <h2>醫療</h2>
-            </div>
-            <div class="item-group">
-                <div class="item">
-                    <div class="pic">
-                        <a href="pic/08 照顧服務員結業證書-s.jpg"><img src="pic/08 照顧服務員結業證書-s.jpg"></a>
-                        <a href="pic/09 BLS基本救命術訓練課程.jpg"><img src="pic/09 BLS基本救命術訓練課程.jpg"></a>
-                    </div>
-                </div>
-            </div>
+    <div class="wrap">
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com岐阜.jpg"><img src="pic/com岐阜.jpg" alt=""></a>
+            <h2>岐阜</h2>
+            <p>
+                日期：4月<br>
+                活動：聲之形<br>
+            </p>
+        </div>
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com大原.jpg"><img src="pic/com大原.jpg" alt=""></a>
+            <h2>京都 大原</h2>
+            <p>
+                日期：11月<br>
+                活動：紅葉紛飛<br>
+            </p>
+        </div>
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com天橋立.jpg"><img src="pic/com天橋立.jpg" alt=""></a>
+            <h2>天橋立</h2>
+            <p>
+                日期：5月<br>
+                活動：日本三景<br>
+            </p>
         </div>
     </div>
 
-    <div class="Technology">
-        <div class="wrap">
-            <div class="title">
-                <h2>科技</h2>
-            </div>
-            <div class="item-group">
-                <div class="item">
-                    <div class="pic">
-                        <a href="pic/12 華梵大學 新尖兵課程Ⅱ 1120420 嵌入式機器學習 證書.jpg"><img
-                                src="pic/12 華梵大學 新尖兵課程Ⅱ 1120420 嵌入式機器學習 證書.jpg"></a>
-                        <a href="pic/10 丙級 電腦軟體應用-s.jpg"><img src="pic/10 丙級 電腦軟體應用-s.jpg"></a>
-                        <a href="pic/11 丙級 網頁設計-s.jpg"><img src="pic/11 丙級 網頁設計-s.jpg"></a>
-                    </div>
-                </div>
-            </div>
+    <div class="wrap">
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com保津川.jpg"><img src="pic/com保津川.jpg" alt=""></a>
+            <h2>保津川</h2>
+            <p>
+                日期：11月<br>
+                活動：輕舟不外拋<br>
+            </p>
+        </div>
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com鞍馬山.jpg"><img src="pic/com鞍馬山.jpg" alt=""></a>
+            <h2>鞍馬山</h2>
+            <p>
+                日期：11月<br>
+                活動：天狗傳奇<br>
+            </p>
+        </div>
+        <div class="item">
+            <div class="tab">Hot</div>
+            <a href="pic/com比叡山.jpg"><img src="pic/com比叡山.jpg" alt=""></a>
+            <h2>比叡山</h2>
+            <p>
+                日期：11月<br>
+                活動：搶救天台宗<br>
+            </p>
         </div>
     </div>
 
     <!-- 著作權 -->
     <div class="footer">
-        &copy;copyright 2023 by weilun
+        &copy; copyright 2023 by weilun
     </div>
 
 </body>

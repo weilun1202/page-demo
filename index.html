@@ -22,23 +22,19 @@
             opacity: 0;
             /* 確保打勾處消失 */
         }
-
         .header {
             height: 50px;
             background-color: #ccc;
             position: relative;
         }
-
         .logo {
             width: 60px;
             height: 40px;
             margin-left: 10px;
         }
-
         .logo img {
             display: block;
         }
-
         .menu_btn {
             width: 40px;
             height: 40px;
@@ -88,7 +84,6 @@
             transition: .5s;
             /* link 出來速度 */
         }
-
         nav a {
             display: block;
             /* 變條列狀態 */
@@ -99,11 +94,15 @@
             border-bottom: 1px solid #282923;
             /* link下方的線 */
         }
-
         #menu_control:checked~.header nav {
             /* 選取器 */
             left: 0;
         }
+
+
+
+
+
 
         /* -------------------- 電腦、平板呈現方式 -------------------- */
         @media screen and (min-width: 768px) {
@@ -111,7 +110,6 @@
                 display: none;
                 /* 讓菜單消失 */
             }
-
             .header {
                 display: flex;
                 justify-content: space-between;
@@ -119,7 +117,6 @@
                 align-items: center;
                 /* 垂直置中 */
             }
-
             nav {
                 /* 把手機狀態的絕對定位改成相對定位 */
                 position: relative;
@@ -131,12 +128,28 @@
                 background-color: transparent;
                 /* 背景透明 */
             }
-
             nav a {
                 border-bottom: none;
                 /* 超連結不要底線 */
             }
         }
+        @media screen and (min-width: 768px) {
+            .banner img {
+                width: 100%;
+                height: 600px;
+            }
+            .item-group {
+                display: flex;
+            }
+            .item-group .pic,
+            .item-group .text {
+                width: 50%;
+                margin: 0;
+            }
+        }
+
+
+
 
         /* ------------------- 封面圖片 ------------------- */
         .banner img {
@@ -196,18 +209,6 @@
             transition: .3s;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         /* ------------------- 著作權 ------------------- */
         .footer {
             background-color: #333;
@@ -215,24 +216,6 @@
             text-align: center;
             padding: 10px 0;
             bottom: 0;
-            /* 08.25 下午更新*/
-        }
-
-        @media screen and (min-width: 768px) {
-            .banner img {
-                width: 100%;
-                height: 600px;
-            }
-
-            .item-group {
-                display: flex;
-            }
-
-            .item-group .pic,
-            .item-group .text {
-                width: 50%;
-                margin: 0;
-            }
         }
     </style>
 </head>
@@ -258,6 +241,7 @@
             <a href="index.html">關於我</a>
             <a href="work.html">學經歷</a>
             <a href="Portfolio.html">證照</a>
+            <a href="commodity.html">2019年旅遊行程</a>
             <a href="trip.html">佐世保</a>
             <a href="mailto:a0977427590@gmail.com">聯絡我</a>
         </nav>
@@ -331,13 +315,9 @@
                     </ul>
                 </div>
             </div>
-
-
-
-
-
         </div>
     </div>
+
     <!-- 著作權 -->
     <div class="footer">
         &copy; copyright 2023 by weilun

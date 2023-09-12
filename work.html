@@ -127,7 +127,25 @@
                 /* 超連結不要底線 */
             }
         }
-
+        /* 平板、電腦狀態下 */
+        @media screen and (min-width: 768px) {
+            .item-group {
+                display: flex;
+            }
+            .school .item {
+                display: flex;
+                width: 50%;
+                margin: 0;
+            }
+            .work .item {
+                width: 50%;
+            }
+            .title {
+                width: 100%;
+                text-align: center;
+                background-color: rgb(238, 241, 204);
+            }
+        }
 
 
 
@@ -192,28 +210,7 @@
             bottom: 0;
         }
 
-        /* 平板、電腦狀態下 */
-        @media screen and (min-width: 768px) {
-            .item-group {
-                display: flex;
-            }
-
-            .school .item {
-                display: flex;
-                width: 50%;
-                margin: 0;
-            }
-
-            .work .item {
-                width: 50%;
-            }
-
-            .title {
-                width: 100%;
-                text-align: center;
-                background-color: rgb(238, 241, 204);
-            }
-        }
+        
     </style>
 </head>
 
@@ -238,6 +235,7 @@
             <a href="index.html">關於我</a>
             <a href="work.html">學經歷</a>
             <a href="Portfolio.html">證照</a>
+            <a href="commodity.html">2019年旅遊行程</a>
             <a href="trip.html">佐世保</a>
             <a href="mailto:a0977427590@gmail.com">聯絡我</a>
         </nav>
